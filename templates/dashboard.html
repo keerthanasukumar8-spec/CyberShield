@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Dashboard</title>
+    <style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0b1120;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 30px;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #38bdf8;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: #172033;
+    border: 1px solid #29364d;
+    border-radius: 14px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+}
+
+.topbar h1 {
+    margin: 0;
+}
+
+.topbar p {
+    color: #94a3b8;
+    margin: 5px 0 0;
+}
+
+.export-btn {
+    display: inline-block;
+    background: #0284c7;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.export-btn:hover {
+    background: #0369a1;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #86efac;
+    background: #143326;
+    border: 1px solid #166534;
+    padding: 9px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+}
+h2 {
+    color: #7dd3fc;
+    margin-top: 32px;
+}
+
+body > p {
+    color: #94a3b8;
+    margin-top: 0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.card {
+    background: #172033;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #29364d;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    margin-bottom: 18px;
+}
+
+.cards .card {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.cards .card:hover {
+    transform: translateY(-4px);
+    border-color: #38bdf8;
+}
+
+
+.card h3 {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-top: 0;
+}
+
+.number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    background: #172033;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 13px 15px;
+    border-bottom: 1px solid #29364d;
+    text-align: left;
+}
+
+th {
+    background: #243149;
+    color: #7dd3fc;
+}
+
+tbody tr:nth-child(even) {
+    background: #1d2940;
+}
+
+tbody tr:hover {
+    background: #293852;
+}
+
+
+tr:hover {
+    background: #202c42;
+}
+
+.high {
+    color: #ffffff;
+    background: #dc2626;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.medium {
+    color: #fef3c7;
+    background: #92400e;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+input, select {
+    background: #0b1120;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    border-radius: 7px;
+    padding: 11px;
+    max-width: 100%;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+    </style>
+</head>
+<body>
+    
+<div class="topbar">
+    <div>
+        <h1>🛡️ CyberShield</h1>
+        <p>Security Operations Dashboard</p>
+    </div>
+
+   
+<div class="header-actions">
+    <span class="status-indicator">
+        <span class="status-dot"></span>
+        Dashboard Online
+    </span>
+
+    <a href="/export" class="export-btn">
+        Export Security Logs ↓
+    </a>
+</div>
+
+</div>
+<h2 class="section-title">Security Overview</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Total Logs</h3>
+            <div class="number">{{ total_logs }}</div>
+        </div>
+        <div class="card">
+            <h3>Failed Logins</h3>
+            <div class="number">{{ failed_logins }}</div>
+        </div>
+        <div class="card">
+            <h3>Successful Logins</h3>
+            <div class="number">{{ successful_logins }}</div>
+        </div>
+        <div class="card">
+            <h3>Total Alerts</h3>
+            <div class="number">{{ alert_count }}</div>
+        </div>
+        
+        <div class="card">
+            <h3>High-Risk Alerts</h3>
+            <div class="number">{{ high_risk }}</div>
+        </div>
+        <div class="card">
+            <h3>Medium-Risk Alerts</h3>
+            <div class="number">{{ medium_risk }}</div>
+        </div>
+    </div>
+
+<h2>Security Alerts</h2>
+<table>
+    <tr>
+        <th>IP Address</th>
+        <th>Failed Attempts</th>
+        <th>Severity</th>
+        <th>Reason</th>
+    </tr>
+
+    {% for alert in alerts %}
+    <tr>
+        <td>{{ alert.ip }}</td>
+        <td>{{ alert.attempts }}</td>
+        <td>
+            
+{% if alert.severity == "HIGH" %}
+    <span class="high">HIGH</span>
+{% elif alert.severity == "MEDIUM" %}
+    <span class="medium">MEDIUM</span>
+{% else %}
+    <span>{{ alert.severity }}</span>
+{% endif %}
+        </td>
+        <td>{{ alert.reason }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No threats detected.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+    
+<h2>Recent Security Logs</h2>
+
+<div class="card">
+    <label for="logSearch">Search by IP address or username:</label>
+    <input
+        type="text"
+        id="logSearch"
+        placeholder="Enter IP address or username..."
+        oninput="filterLogs()"
+        style="width: 95%; padding: 10px; margin: 10px 0;"
+    >
+
+    <label for="eventFilter">Filter by event type:</label>
+    <select id="eventFilter" onchange="filterLogs()"
+        style="padding: 10px; margin: 10px 0;">
+        <option value="ALL">All Events</option>
+        <option value="LOGIN_FAILED">Failed Logins</option>
+        <option value="LOGIN_SUCCESS">Successful Logins</option>
+    </select>
+</div>
+<table id="logsTable">
+    <tr><th>Log Details</th></tr>
+
+            {% for log in logs %}
+        <tr><td>{{ log }}</td></tr>
+        {% else %}
+        <tr><td>No logs found.</td></tr>
+        {% endfor %}
+    </table>
+
+
+    <h2>IP Activity</h2>
+    <table>
+        <tr><th>IP Address</th><th>Activity</th></tr>
+        {% for ip, activity in ip_activity.items() %}
+        <tr><td>{{ ip }}</td><td>{{ activity }}</td></tr>
+        {% else %}
+        <tr><td colspan="2">No IP activity found.</td></tr>
+        {% endfor %}
+    </table>
+
+<script>
+function filterLogs() {
+    const search = document.getElementById("logSearch").value.toLowerCase();
+    const eventType = document.getElementById("eventFilter").value;
+    const rows = document.querySelectorAll("#logsTable tr");
+
+    rows.forEach((row, index) => {
+        if (index === 0) return;
+
+        const text = row.innerText.toLowerCase();
+        const matchesSearch = text.includes(search);
+        const matchesEvent =
+            eventType === "ALL" || text.includes(eventType.toLowerCase());
+
+        row.style.display =
+            matchesSearch && matchesEvent ? "" : "none";
+    });
+}
+</script>
+</body>
+</html>
