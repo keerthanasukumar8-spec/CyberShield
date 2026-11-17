@@ -1,76 +1,86 @@
+# CyberShield – Log Threat Detection Dashboard
 
+## 1. Project Overview
 
-\# CyberShield - Log Threat Detection Dashboard
+CyberShield is a Python-based cybersecurity project designed to monitor security logs, identify suspicious login activities, and detect potential threats through a web-based dashboard.
 
+## 2. Features
 
+- Security log monitoring
+- Failed login detection
+- Successful login tracking
+- Brute-force attack detection
+- HIGH and MEDIUM risk alerts
+- IP address activity tracking
+- Search and event filters
+- CSV report export
+- Real-time monitoring script
 
-\## Project Overview
+## 3. Technologies Used
 
-CyberShield is a Python-based cybersecurity project designed to monitor security logs and detect suspicious login activities.
+- Python
+- Flask
+- HTML
+- CSS
+- CSV
 
+## 4. Project Structure
 
+```text
+CyberShield/
+│
+├── app.py
+├── detector.py
+├── log_parser.py
+├── realtime_monitor.py
+├── logs/
+├── templates/
+├── README.md
+└── .gitignore
+```
 
-\## Features
+## 5. Installation and Execution
 
-\- Security log monitoring
+**Step 1: Clone the repository**
 
-\- Failed login detection
+```bash
+git clone https://github.com/keerthanasukumar8-spec/CyberShield.git
+```
 
-\- Successful login tracking
+**Step 2: Open the project folder**
 
-\- Brute-force attack detection
+```bash
+cd CyberShield
+```
 
-\- HIGH and MEDIUM risk alerts
+**Step 3: Install Flask**
 
-\- IP address activity tracking
+```bash
+pip install flask
+```
 
-\- Search and event filters
+**Step 4: Run the application**
 
-\- CSV report export
+```bash
+python app.py
+```
 
-\- Real-time monitoring script
+**Step 5: Open in browser**
 
+```text
+http://127.0.0.1:5000
+```
 
-
-\## Technologies Used
-
-\- Python
-
-\- Flask
-
-\- HTML
-
-\- CSS
-
-\- CSV
-
-
-
-\## Project Structure
-
-\- app.py - Flask application
-
-\- detector.py - Threat detection
-
-\- log\_parser.py - Log analysis
-
-\- realtime\_monitor.py - Real-time monitoring
-
-\- logs/ - Security log files
-
-\- templates/ - Dashboard HTML files
-
-
-
-\## Project Purpose
+## 6. Project Purpose
 
 The main purpose of CyberShield is to identify suspicious login activities and provide a simple dashboard for monitoring potential security threats.
 
+This project demonstrates basic cybersecurity concepts, log analysis, and Python web development.
 
-
-\## Developer
+## 7. Developer
 
 BCA Student
 
+## 8. Project Status
 
-
+Completed – Beginner-level cybersecurity project.
